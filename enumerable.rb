@@ -94,11 +94,14 @@ module Enumerable
     
 end
 
+# Most of those examples comes from https://apidock.com/ruby/ 
+
 puts "my_each"
 
 [1,2,3,4,"hi"].my_each do |x|
-    p x
+    puts x
 end
+
 puts "--------------------------"
 puts "my_each_with_index"
 
@@ -107,8 +110,8 @@ puts "my_each_with_index"
 puts "--------------------------"
 puts "my_select"
 
-results = [1,2,3,4,5].my_select { |x| x > 3 }
-puts results
+result = [1,2,3,4,5].select { |num|  num.even?  }   #=> [2, 4]
+puts result
 
 puts "--------------------------"
 puts "my_all?"
@@ -153,8 +156,8 @@ puts ary.my_count{ |x| x%2==0 } #=> 3
 puts "--------------------------"
 puts "my_map"
 
-p (1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
-p (1..4).my_map { "dog"  }   #=> ["cat", "cat", "cat", "cat"]
+puts (1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
+puts (1..4).my_map { "dog"  }   #=> ["cat", "cat", "cat", "cat"]
 
 puts "--------------------------"
 puts "my_inject"
@@ -163,8 +166,9 @@ longest = %w{ cat sheep bear }.my_inject do |memo, word|
     memo.length > word.length ? memo : word
  end
 
- puts longest               #=> "sheep"
- puts (5..10).inject { |sum, n| sum + n }      #=> 45
+puts longest               #=> "sheep"
+puts (5..10).inject { |sum, n| sum + n }      #=> 45
+puts (5..10).inject(2) { |sum, n| sum + n }      #=> 47
 
 puts "--------------------------"
 puts "multiply_els"
