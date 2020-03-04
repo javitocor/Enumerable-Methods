@@ -77,7 +77,7 @@ module Enumerable
     end
     
     def my_inject(n=nil)
-        if n = nil
+        if n == nil
             acc = self[0]
             for x in 1...self.length
                 acc = yield(acc, self[x])
@@ -90,6 +90,92 @@ module Enumerable
             end
             return acc
         end
-    end
+    end    
     
 end
+
+puts "my_each"
+
+[1,2,3,4,"hi"].my_each do |x|
+    p x
+end
+puts "--------------------------"
+puts "my_each_with_index"
+
+[1,2,3,4,"hi"].my_each_with_index { |value, index| puts "#{value} => #{index}"} 
+
+puts "--------------------------"
+puts "my_select"
+
+results = [1,2,3,4,5].my_select { |x| x > 3 }
+puts results
+
+puts "--------------------------"
+puts "my_all?"
+
+puts %w[ant bear cat].all? { |word| word.length >= 3 } #=> true
+puts %w[ant bear cat].all? { |word| word.length >= 4 } #=> false
+puts %w[ant bear cat].all?(/t/)                        #=> false
+puts [1, 2i, 3.14].all?(Numeric)                       #=> true
+puts [nil, true, 99].all?                              #=> false
+puts [].all?                                           #=> true
+
+puts "--------------------------"
+puts "my_any??"
+
+puts %w[ant bear cat].any? { |word| word.length >= 3 } #=> true
+puts %w[ant bear cat].any? { |word| word.length >= 4 } #=> true
+puts %w[ant bear cat].any?(/d/)                        #=> false
+puts [nil, true, 99].any?(Integer)                     #=> true
+puts [nil, true, 99].any?                              #=> true
+puts [].any?                                           #=> false
+
+puts "--------------------------"
+puts "my_none?"
+
+puts %w{ant bear cat}.none? { |word| word.length == 5 } #=> true
+puts %w{ant bear cat}.none? { |word| word.length >= 4 } #=> false
+puts %w{ant bear cat}.none?(/d/)                        #=> true
+puts [1, 3.14, 42].none?(Float)                         #=> false
+puts [].none?                                           #=> true
+puts [nil].none?                                        #=> true
+puts [nil, false].none?                                 #=> true
+puts [nil, false, true].none?                           #=> false
+
+puts "--------------------------"
+puts "my_count"
+
+ary = [1, 2, 4, 2]
+puts ary.my_count                #=> 4
+puts ary.my_count(2)            #=> 2
+puts ary.my_count{ |x| x%2==0 } #=> 3
+
+puts "--------------------------"
+puts "my_map"
+
+p (1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
+p (1..4).my_map { "dog"  }   #=> ["cat", "cat", "cat", "cat"]
+
+puts "--------------------------"
+puts "my_inject"
+
+longest = %w{ cat sheep bear }.my_inject do |memo, word|
+    memo.length > word.length ? memo : word
+ end
+
+ puts longest               #=> "sheep"
+ puts (5..10).inject { |sum, n| sum + n }      #=> 45
+
+puts "--------------------------"
+puts "multiply_els"
+
+def multiply_els(array)
+    array.my_inject { |product, n| product * n }
+end
+
+puts multiply_els([2,4,5])    #=> 40
+
+puts "--------------------------"
+puts "my_map_proc_block"
+
+
