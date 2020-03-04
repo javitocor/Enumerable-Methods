@@ -32,30 +32,30 @@ module Enumerable
     end
     
     def my_all?
-        my_each { |x| return false if yield(x) == false}
+        self.my_each { |x| return false if yield(x) == false}
         return true
     end
     
     def my_any?
-        my_each { |x| return true if yield(x)==true}
+        self.my_each { |x| return true if yield(x)==true}
         return false
     end
     
     def my_none?
-        my_each { |x| return false if yield(x)== true}
+        self.my_each { |x| return false if yield(x)== true}
         return true
     end
     
     def my_count(n=nil)
         number = 0
-        if block_given?
-            my_each do |x|
+        if block_given? 
+            self.my_each do |x|
                 if yield(x)== true
                     number += 1
                 end
             end            
         elsif n != nil
-            my_each do |x|
+            self.my_each do |x|
                 if x == n
                     number += 1
                 end
@@ -65,11 +65,17 @@ module Enumerable
         end
         return number
     end
-    puts [1, 2, 4, 2].my_count { |x| x%2 == 0 }
+    
     def my_map
-
+        arr = []
+        if block_given?
+            self.my_each do |x|
+                arr.push(yield(x))
+            end
+        end
+        arr
     end
-
+    
     def my_inject
 
     end
