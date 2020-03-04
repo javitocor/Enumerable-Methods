@@ -46,10 +46,28 @@ module Enumerable
         return true
     end
     
-    def my_count
-
+    def my_count(n=nil)
+        number = 0
+        if block_given?
+            my_each do |x|
+                if yield(x)== true
+                    number += 1
+                end
+            end
+            number 
+        elsif n != nil
+            my_each do |x|
+                if x == n
+                    number += 1
+                end
+            end
+            number
+        else
+            number = self.length
+        end
+        return number
     end
-
+    puts [1, 2, 4, 2].my_count (2)
     def my_map
 
     end
