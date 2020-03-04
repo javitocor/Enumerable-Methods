@@ -37,9 +37,10 @@ module Enumerable
     end
     
     def my_any?
-
+        my_each { |x| return true if yield(x)==true}
+        return false
     end
-
+    
     def my_none?
 
     end
