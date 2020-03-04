@@ -76,12 +76,20 @@ module Enumerable
         arr
     end
     
-    def my_inject
-        acc = self[0]
-        for x in 1...self.length
-            acc = yield(acc, self[x])
+    def my_inject(n=nil)
+        if n = nil
+            acc = self[0]
+            for x in 1...self.length
+                acc = yield(acc, self[x])
+            end
+            return acc
+        else
+            acc = n
+            for x in 0...self.length
+                acc = yield(acc, self[x])
+            end
+            return acc
         end
-        return acc
     end
-    puts (5..10).inject(1) { |product, n| product * n }
+    
 end
