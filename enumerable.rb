@@ -32,9 +32,17 @@ module Enumerable
     end
     
     def my_all?
-
+        if block_given?
+            for x in self do
+               if self[x] == false
+                return false
+               else
+                return true 
+               end
+            end
+        end
     end
-
+    puts %w[ant bear cat house].all? { |word| word.length >= 4 }
     def my_any?
 
     end
