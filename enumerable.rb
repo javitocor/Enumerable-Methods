@@ -42,9 +42,10 @@ module Enumerable
     end
     
     def my_none?
-
+        my_each { |x| return false if yield(x)== true}
+        return true
     end
-
+    
     def my_count
 
     end
