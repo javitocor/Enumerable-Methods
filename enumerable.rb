@@ -10,20 +10,27 @@ module Enumerable
     
     def my_each_with_index
         if block_given?
+            idx = 0
             for x in self do
-                yield (x)                
-            end
-            for y in self do
-                y.index(self[x]).to_i
-            end
+                yield(x, idx)
+                idx += 1                
+            end           
         end
         return self
     end
-    ['a', 'b', 'c'].my_each_with_index { |el, i| puts i }
+    
     def my_select
-
+        if block_given?
+        array=[]
+        for x in self do
+            if yield(self[x]) == true
+                array.push(self[x])
+            end
+        end
+        return array
+        end
     end
-
+    
     def my_all?
 
     end
