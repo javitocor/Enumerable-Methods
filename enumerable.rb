@@ -53,21 +53,19 @@ module Enumerable
                 if yield(x)== true
                     number += 1
                 end
-            end
-            number 
+            end            
         elsif n != nil
             my_each do |x|
                 if x == n
                     number += 1
                 end
-            end
-            number
+            end            
         else
             number = self.length
         end
         return number
     end
-    puts [1, 2, 4, 2].my_count (2)
+    puts [1, 2, 4, 2].my_count { |x| x%2 == 0 }
     def my_map
 
     end
