@@ -1,36 +1,27 @@
-# Project Name
+# Enumerable-Methods
 
 
 # What it does
-
+Rebuild up some of the basic Ruby Enumerable methods 
 
 # Built With
-
-# Live Demo
-[Live Demo Link]()
+Ruby
+VsCode
 
 # Getting Started
 To get a local copy up and running follow these simple example steps.
 
 Clone the project unto your local machine
-cd into the folder, find the index.html file and open it
+cd to the folder
+run "ruby enumerable.rb on your terminal"
 
 # Prerequisites
-- Get your browsers up to date
+- Get ruby latest version installed
 
 # Install
 - Install VSCode or any code editor you like
 - Install Node JS and nmp(most recents versions)
 - Run this command on your terminal in order to install stylelint: npm install stylelint stylelint-config-recommended --save-dev 
-
-# Run tests
-- Test the css by typing the command: npx stylelint .
-- Go to http://validator.w3.org/ , upload the index.html file to test it.
-
-# Deployment
-- Get an online web hosting
-- Upload all the files in the htdocs folder of your domain
-- Access your domain name in browser
 
 # Author
 
@@ -46,7 +37,7 @@ Contributions, issues and feature requests are welcome!
 Feel free to check the [issues page]().
 
 # Attributions and Credit
-🚀
+🚀 The Odin Project
 
 # Show your support
 Give a ⭐️ if you like this project!

@@ -92,6 +92,8 @@ module Enumerable
         end
     end    
     
+    def my_map_proc
+    end
 end
 
 # Most of those examples comes from https://apidock.com/ruby/ 
@@ -102,18 +104,18 @@ puts "my_each"
     puts x
 end
 
-puts "--------------------------"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "my_each_with_index"
 
 [1,2,3,4,"hi"].my_each_with_index { |value, index| puts "#{value} => #{index}"} 
 
-puts "--------------------------"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "my_select"
 
 result = [1,2,3,4,5].select { |num|  num.even?  }   #=> [2, 4]
 puts result
 
-puts "--------------------------"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "my_all?"
 
 puts %w[ant bear cat].all? { |word| word.length >= 3 } #=> true
@@ -123,7 +125,7 @@ puts [1, 2i, 3.14].all?(Numeric)                       #=> true
 puts [nil, true, 99].all?                              #=> false
 puts [].all?                                           #=> true
 
-puts "--------------------------"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "my_any??"
 
 puts %w[ant bear cat].any? { |word| word.length >= 3 } #=> true
@@ -133,7 +135,7 @@ puts [nil, true, 99].any?(Integer)                     #=> true
 puts [nil, true, 99].any?                              #=> true
 puts [].any?                                           #=> false
 
-puts "--------------------------"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "my_none?"
 
 puts %w{ant bear cat}.none? { |word| word.length == 5 } #=> true
@@ -145,7 +147,7 @@ puts [nil].none?                                        #=> true
 puts [nil, false].none?                                 #=> true
 puts [nil, false, true].none?                           #=> false
 
-puts "--------------------------"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "my_count"
 
 ary = [1, 2, 4, 2]
@@ -153,13 +155,14 @@ puts ary.my_count                #=> 4
 puts ary.my_count(2)            #=> 2
 puts ary.my_count{ |x| x%2==0 } #=> 3
 
-puts "--------------------------"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "my_map"
 
 puts (1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
-puts (1..4).my_map { "dog"  }   #=> ["cat", "cat", "cat", "cat"]
+puts (1..4).my_map { "dog"  }   #=> ["dog", "dog", "dog", "dog"]
+puts ["a", "b", "c"].my_map { |string| string.upcase }  #=> ["A", "B", "C"]
 
-puts "--------------------------"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "my_inject"
 
 longest = %w{ cat sheep bear }.my_inject do |memo, word|
@@ -170,7 +173,7 @@ puts longest               #=> "sheep"
 puts (5..10).inject { |sum, n| sum + n }      #=> 45
 puts (5..10).inject(2) { |sum, n| sum + n }      #=> 47
 
-puts "--------------------------"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "multiply_els"
 
 def multiply_els(array)
@@ -179,7 +182,7 @@ end
 
 puts multiply_els([2,4,5])    #=> 40
 
-puts "--------------------------"
-puts "my_map_proc_block"
+puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
+puts "my_map_proc"
 
 
