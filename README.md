@@ -5,15 +5,15 @@
 Rebuild up some of the basic Ruby Enumerable methods 
 
 # Built With
-Ruby
-VsCode
+- Ruby
+- VsCode
 
 # Getting Started
 To get a local copy up and running follow these simple example steps.
 
 Clone the project unto your local machine
 cd to the folder
-run "ruby enumerable.rb on your terminal"
+run "ruby enumerable.rb" on your terminal
 
 # Prerequisites
 - Get ruby latest version installed
