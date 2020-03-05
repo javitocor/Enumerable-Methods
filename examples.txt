@@ -80,8 +80,4 @@ puts (5..10).inject(2) { |sum, n| sum + n } #=> 47
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'multiply_els'
 
-def multiply_els(array)
-  array.my_inject { |product, n| product * n }
-end
-
 puts multiply_els([2, 4, 5]) #=> 40
