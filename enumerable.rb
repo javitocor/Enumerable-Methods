@@ -66,7 +66,7 @@ module Enumerable
         return number
     end
     
-    def my_map
+    def my_map(&block)
         arr = []
         if block_given?
             self.my_each do |x|
@@ -91,9 +91,7 @@ module Enumerable
             return acc
         end
     end    
-    
-    def my_map_proc
-    end
+   
 end
 
 # Most of those examples comes from https://apidock.com/ruby/ 
@@ -161,6 +159,7 @@ puts "my_map"
 puts (1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
 puts (1..4).my_map { "dog"  }   #=> ["dog", "dog", "dog", "dog"]
 puts ["a", "b", "c"].my_map { |string| string.upcase }  #=> ["A", "B", "C"]
+puts ["a", "b", "c"].map(&:class)      #=> [String, String, String]
 
 puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
 puts "my_inject"
@@ -182,7 +181,5 @@ end
 
 puts multiply_els([2,4,5])    #=> 40
 
-puts "-*-*-*-*-*-*-*-*-*-*-*-*-"
-puts "my_map_proc"
 
 
