@@ -91,11 +91,12 @@ module Enumerable
   end
 
   def my_map(proc=nil)
-    return to_enum(:my_map) if !block_given? && arg == nil
+    return to_enum(:my_map) if !block_given? && proc == nil
     arr = []
     if  proc != nil 
       self.my_each do |x|
-        arr.push(call.proc(x))
+        arr.push(proc.call(x))
+      end
     else
       self.my_each do |x|
         arr.push(yield(x))
@@ -104,17 +105,16 @@ module Enumerable
     arr
   end
 
-  def my_inject(par = nil)
-    if par.nil?
+  def my_inject(par = nil) 
+    if par.nil?      
       acc = self[0]
-      (1...self.length).my_each do |x|
-        acc = yield(acc, self[x])
+      self.my_each do |x| 
+        acc = yield(acc, x)
       end
-
     else
       acc = par
-      (0...self.length).my_each do |x|
-        acc = yield(acc, self[x])
+      self.my_each do |x| 
+        acc = yield(acc, x)
       end
       acc
     end
@@ -213,13 +213,15 @@ puts [18, 22, 5, 6] .my_map(my_proc) {|num| num < 10 } # true true false false
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'my_inject'
 
-longest = %w[cat sheep bear].my_inject do |memo, word|
+longest = %w{ cat sheep bear }.my_inject do |memo, word|
   memo.length > word.length ? memo : word
 end
 
 puts longest #=> "sheep"
 puts (5..10).my_inject { |sum, n| sum + n } #=> 45
 puts (5..10).my_inject(2) { |sum, n| sum + n } #=> 47
+puts (1..5).my_inject(4) { |prod, n| prod * n } #=> 480
+
 
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'multiply_els'
