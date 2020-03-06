@@ -2,7 +2,7 @@
 
 
 # What it does
-Rebuild up some of the basic Ruby Enumerable methods 
+This project contains an implementation of some of the Ruby's enumerable methods
 
 # Built With
 - Ruby
