@@ -1,8 +1,9 @@
+# rubocop:disable Metrics/ModuleLength
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
 
-    my_each do |x|
+    each do |x|
       yield x
     end
     self
@@ -12,7 +13,7 @@ module Enumerable
     return to_enum __method__ unless block_given?
 
     idx = 0
-    my_each do |x|
+    each do |x|
       yield(x, idx)
       idx += 1
     end
@@ -29,6 +30,7 @@ module Enumerable
     array
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_all?(arg = nil)
     return true if !block_given? && arg.nil? && include?(nil) == false
     return false unless block_given? || !arg.nil?
@@ -55,7 +57,8 @@ module Enumerable
       my_each { |x| return true unless arg.match(x).nil? }
     elsif arg.class <= Numeric || arg.class <= String
       my_each { |x| return true if x == arg }
-    else my_each { |x| return true if x.class <= arg }
+    else
+      my_each { |x| return true if x.class <= arg }
     end
     false
   end
@@ -76,18 +79,17 @@ module Enumerable
     true
   end
 
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_count(par = nil)
     number = 0
-    if block_given?
-      my_each do |x|
+    my_each do |x|
+      if block_given?
         number += 1 if yield(x) == true
-      end
-    elsif !par.nil?
-      my_each do |x|
+      elsif !par.nil?
         number += 1 if x == par
+      else
+        number = length
       end
-    else
-      number = length
     end
     number
   end
@@ -124,6 +126,7 @@ module Enumerable
     acc
   end
 end
+# rubocop:enable Metrics/ModuleLength
 def multiply_els(array)
   array.my_inject { |product, n| product * n }
 end
