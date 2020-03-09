@@ -2,19 +2,21 @@
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
-      for x in self
-        yield x
-      end    
+
+    each do |x|
+      yield x
+    end
     self
   end
-  
+
   def my_each_with_index
-    return to_enum (__method__) if !block_given?
-      idx = 0
-      for x in self
-        yield(x, idx)
-        idx += 1
-      end
+    return to_enum __method__ unless block_given?
+
+    idx = 0
+    each do |x|
+      yield(x, idx)
+      idx += 1
+    end
     self
   end
 
