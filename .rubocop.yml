@@ -3,7 +3,7 @@ AllCops:
     - "README.md"
     - "Guardfile"
     - "Rakefile"
-
+    - "enumerable.rb"
   DisplayCopNames: true
 
 Layout/LineLength:
