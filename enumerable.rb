@@ -36,9 +36,6 @@ module Enumerable
     elsif arg.class == Regexp
       self.my_each { |x| return false if arg.match(x) == false }
       true
-    elsif arg.class == class
-      self.my_each { |x| return false if ( x.class == arg ) == false }
-      true
     else
       self.my_each { |x| return false if x != arg }
       true
