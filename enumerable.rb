@@ -31,13 +31,16 @@ module Enumerable
     return true if !block_given? && arg == nil && self.include?(nil) == false
     return false unless block_given? || arg != nil 
     if block_given?
-      my_each { |x| return false if yield(x) == false }
+      self.my_each { |x| return false if yield(x) == false }
       true
     elsif arg.class == Regexp
-      my_each { |x| return false if x.include?(arg.to_s) == false }
+      self.my_each { |x| return false if arg.match(x) == false }
+      true
+    elsif arg.class == class
+      self.my_each { |x| return false if ( x.class == arg ) == false }
       true
     else
-      my_each { |x| return false if x != arg }
+      self.my_each { |x| return false if x != arg }
       true
     end
   end
@@ -49,7 +52,7 @@ module Enumerable
       my_each { |x| return true if yield(x) == true }
       false
     elsif arg.class == Regexp
-      my_each { |x| return true if x.include?(arg.to_s) == true }
+      my_each { |x| return true if arg.match(x) == true }
       false
     else
       my_each { |x| return true if x == arg }
@@ -65,7 +68,7 @@ module Enumerable
       my_each { |x| return false if yield(x) == true }
       true
     elsif arg.class == Regexp
-      my_each { |x| return false if x.include?(arg.to_s) == true }
+      my_each { |x| return false if arg.match(x) == true }
       true
     else
       my_each { |x| return false if x == arg }
@@ -105,15 +108,18 @@ module Enumerable
     arr
   end
 
-  def my_inject(par = nil) 
-    if par.nil?      
-      acc = self[0]
-      self.my_each do |x| 
+  def my_inject(par = nil)
+    if par.nil? 
+      array = self.to_a     
+      acc = array[0]
+      for x in array[1...array.length]
         acc = yield(acc, x)
       end
+      acc
     else
+      array = self.to_a
       acc = par
-      self.my_each do |x| 
+      array.my_each do |x| 
         acc = yield(acc, x)
       end
       acc
@@ -213,11 +219,12 @@ puts [18, 22, 5, 6] .my_map(my_proc) {|num| num < 10 } # true true false false
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'my_inject'
 
-longest = %w{ cat sheep bear }.my_inject do |memo, word|
+longest = %w[cat sheep bear].my_inject do |memo, word|
   memo.length > word.length ? memo : word
 end
 
 puts longest #=> "sheep"
+
 puts (5..10).my_inject { |sum, n| sum + n } #=> 45
 puts (5..10).my_inject(2) { |sum, n| sum + n } #=> 47
 puts (1..5).my_inject(4) { |prod, n| prod * n } #=> 480
