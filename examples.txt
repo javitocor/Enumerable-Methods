@@ -48,7 +48,7 @@ puts [nil, true, 99].my_any? #=> true
 puts [].my_any? #=> false
 puts [nil, false, true, []].my_any? #=> true
 puts [1, 2.5, 'a', 9].my_any?(Integer) #=> true
-puts %w[dog door rod blade].my_any?(/d/) #=> false
+puts %w[dog door rod blade].my_any?(/d/) #=> true
 puts [3,4,7,11].my_any?(3) #=> true
 
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
