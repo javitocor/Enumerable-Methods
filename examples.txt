@@ -22,6 +22,7 @@ puts result
 block = proc { |num| num = 11 }
 puts [2,4,7,11].my_select(&block) #=> [11]
 puts [2,4,7,11].my_select  #<Enumerator: [2, 4, 7, 11]:my_select>
+puts [1, 2].my_select { |num| num == 1 } #=> [1]
 
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'my_all?'
@@ -36,6 +37,7 @@ puts [nil, false, true, []].my_all? #=> false
 puts [1, 2.5, 'a', 9].my_all?(Integer) #=> false
 puts %w[dog door rod blade].my_all?(/d/) #=> true
 puts [3,4,7,11].my_all?(3) #=> false
+puts [1, false].my_all? #=> false
 
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'my_any??'
@@ -50,6 +52,7 @@ puts [nil, false, true, []].my_any? #=> true
 puts [1, 2.5, 'a', 9].my_any?(Integer) #=> true
 puts %w[dog door rod blade].my_any?(/d/) #=> true
 puts [3,4,7,11].my_any?(3) #=> true
+puts [1, false].my_any? #=> true
 
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'my_none?'
@@ -98,7 +101,8 @@ puts longest #=> "sheep"
 puts (5..10).my_inject { |sum, n| sum + n } #=> 45
 puts (5..10).my_inject(2) { |sum, n| sum + n } #=> 47
 puts (1..5).my_inject(4) { |prod, n| prod * n } #=> 480
-
+puts [1, 1, 1].my_inject(:+) #=> 3
+puts [1, 1, 1].my_inject(2, :+) #=> 3
 
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'multiply_els'
