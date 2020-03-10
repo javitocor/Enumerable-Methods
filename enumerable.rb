@@ -112,18 +112,30 @@ module Enumerable
 
   def my_inject(par = nil, sym = nil)
     array = to_a
-    if par.nil?
-      acc = array[0]
-      array[1...array.length].my_each do |x|
-        acc = yield(acc, x)
-      end
-    elsif block_given?
-      acc = par
-      array.my_each do |x|
-        acc = yield(acc, x)
+    if block_given?
+      if par.nil? 
+        acc = array[0]
+        array[1...array.length].my_each do |x|
+          acc = yield(acc, x)
+        end    
+      else 
+        acc = par
+        array.my_each do |x|
+          acc = yield(acc, x)
+        end
       end
     else
-
+      if !par.nil? && sym != nil
+        acc = par
+        self.my_each do |x|
+        acc = acc.send(sym, x)
+        end
+      elsif !par.nil? && sym == nil
+        acc = self[0]
+        array[1...array.length].my_each do |x|
+          acc = acc.send(par, x)
+        end
+      end
     end
     acc
   end
@@ -232,7 +244,7 @@ puts (5..10).my_inject { |sum, n| sum + n } #=> 45
 puts (5..10).my_inject(2) { |sum, n| sum + n } #=> 47
 puts (1..5).my_inject(4) { |prod, n| prod * n } #=> 480
 puts [1, 1, 1].my_inject(:+) #=> 3
-puts [1, 1, 1].my_inject(2, :+) #=> 3
+puts [1, 1, 1].my_inject(2, :+) #=> 5
 
 
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
