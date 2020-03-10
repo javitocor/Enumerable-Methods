@@ -48,7 +48,7 @@ module Enumerable
   end
 
   def my_any?(arg = nil)
-    return true if !block_given? && arg.nil? && ( include?(nil) != false || include?(false) != false)
+    return true if !block_given? && arg.nil? && (include?(nil) != false || include?(false) != false)
     return false unless block_given? || !arg.nil?
 
     if block_given?
@@ -79,7 +79,6 @@ module Enumerable
     true
   end
 
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_count(par = nil)
     number = 0
     my_each do |x|
@@ -109,28 +108,30 @@ module Enumerable
     end
     arr
   end
+  # rubocop: disable Metrics/MethodLength
+  # rubocop: disable Style/IfInsideElse
 
   def my_inject(par = nil, sym = nil)
     array = to_a
     if block_given?
-      if par.nil? 
+      if par.nil?
         acc = array[0]
         array[1...array.length].my_each do |x|
           acc = yield(acc, x)
-        end    
-      else 
+        end
+      else
         acc = par
         array.my_each do |x|
           acc = yield(acc, x)
         end
       end
     else
-      if !par.nil? && sym != nil
+      if !par.nil? && !sym.nil?
         acc = par
-        self.my_each do |x|
-        acc = acc.send(sym, x)
+        my_each do |x|
+          acc = acc.send(sym, x)
         end
-      elsif !par.nil? && sym == nil
+      elsif !par.nil? && sym.nil?
         acc = self[0]
         array[1...array.length].my_each do |x|
           acc = acc.send(par, x)
@@ -139,7 +140,10 @@ module Enumerable
     end
     acc
   end
+  # rubocop: enable Metrics/MethodLength
+  # rubocop: enable Style/IfInsideElse
 end
+# rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 # rubocop:enable Metrics/ModuleLength
 def multiply_els(array)
   array.my_inject { |product, n| product * n }
