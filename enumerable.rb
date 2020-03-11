@@ -48,7 +48,7 @@ module Enumerable
   end
 
   def my_any?(arg = nil)
-    return true if !block_given? && arg.nil? &&  my_each { |x| return true if x == true} && empty? == false
+    return true if !block_given? && arg.nil? && my_each { |x| return true if x == true } && empty? == false
     return false unless block_given? || !arg.nil?
 
     if block_given?
