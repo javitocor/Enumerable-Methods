@@ -55,6 +55,7 @@ puts [3,4,7,11].my_any?(3) #=> true
 puts [1, false].my_any? #=> true
 puts [1].my_any? #=> true
 puts [nil].my_any? #=> false
+puts [nil, false, nil, false].my_any? #=> false
 
 puts '-*-*-*-*-*-*-*-*-*-*-*-*-'
 puts 'my_none?'
