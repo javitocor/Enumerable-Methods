@@ -17,10 +17,6 @@ RSpec.describe Enumerable do
     it 'returns an array of elements that matches the block' do
       expect([1, 2, 3, 4, 5, 6].my_select(&:even?)).to eql([2, 4, 6])
     end
-    it 'accepts a proc' do
-      block = proc { |num| num == 11 }
-      expect([2, 4, 7, 11].select(&block)).to eql([11])
-    end
   end
   describe 'my_all?' do
     it 'returns true if all elements matches the block' do
