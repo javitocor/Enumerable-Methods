@@ -2,21 +2,17 @@
 
 
 # What it does
-This project contains an implementation of some of the Ruby's enumerable methods
+This project contains an implementation of some Ruby's enumerable methods
 
 # Built With
 - Ruby
 - VsCode
 
 # Getting Started
-To get a local copy up and running follow these simple example steps.
-
-Clone the project unto your local machine
-cd to the folder
-run "ruby enumerable.rb" on your terminal
+- Clone the project on your local machine, cd to the folder, and then run "ruby enumerable.rb" on your terminal
 
 # Prerequisites
-- Get ruby latest version installed
+- Install Ruby's latest version
 
 # Install
 - Install VSCode or any code editor you like
@@ -27,17 +23,19 @@ run "ruby enumerable.rb" on your terminal
 
 👤 Javier Oriol Correas Sanchez Cuesta
 
-- Github: [@githubhandle](https://github.com/javitocor)
-- Twitter: [@twitterhandle](https://twitter.com/JavierCorreas4)
-- Linkedin: [linkedin](https://www.linkedin.com/in/javier-correas-sanchez-cuesta-15289482/)
+- Github: [@javitocor](https://github.com/javitocor)
+- Twitter: [@JavierCorreas4](https://twitter.com/JavierCorreas4)
+- Linkedin: [Javier Oriol Correas Sanchez Cuesta](https://www.linkedin.com/in/javier-correas-sanchez-cuesta-15289482/)
 
 # 🤝 Contributing
 Contributions, issues and feature requests are welcome!
 
 Feel free to check the [issues page]().
 
-# Attributions and Credit
-🚀 The Odin Project
+# Attributions and Credit 🚀
+
+ - The Odin Project
+ - Microverse
 
 # Show your support
 Give a ⭐️ if you like this project!
