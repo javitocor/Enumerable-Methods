@@ -2,7 +2,7 @@
 
 
 # What it does
-This project contains an implementation of some Ruby's enumerable methods
+- This project contains an implementation of some Ruby's enumerable methods
 
 # Built With
 - Ruby
